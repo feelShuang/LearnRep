@@ -2,14 +2,24 @@
 <html ng-app>
 <head>
 	<title>Simple app</title>
+	<style type="text/css">
+		body {
+			padding: 0 100px;
+		}
+		.content {
+			background-color: #F9F9F9;
+		}
+	</style>
 </head>
 <body>
-	<input type="text" ng-model="name" placeholder="Your name">
-	<h1>Hello {{ name }}</h1>
-
-	<div>
+	<div class="demo">	
+		<input type="text" ng-model="name" placeholder="Your name">
+		<h1>Hello {{ name }}</h1>
+	</div>
+	<div class="content">
 		<h3>AngularJS中的数据绑定</h3>
-		<p>只有被具有ng-app属性的DOM元素包含的元素才会受AngularJS影响</p>
+		<p>* ng-app属性声明所有被其包含的内容都属于这个AngularJS应用，这也是我们可以在Web应用中嵌套AngularJS应用的原因。只有被具有ng-app属性的DOM元素包含的元素才会受AngularJS影响</p>
+		<p>tip: 视图中的插值会在计算一个或多个变量时被动态替换，替换结果是字符串中的插值被变量的值替代。例如，该例中的name变量，它的只是“Ari”，那么视图中的"Hello '{{' name '}}'"字符串会被替换成“Hello Ari”</p>
 	</div>
 
 	<script type="text/javascript" src="../src/js/angular.min.js"></script>
