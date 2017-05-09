@@ -9,6 +9,9 @@
 		.content {
 			background-color: #F9F9F9;
 		}
+		.tip {
+			font-family: STKaiti;
+		}
 	</style>
 </head>
 <body>
@@ -18,8 +21,10 @@
 	</div>
 	<div class="content">
 		<h3>AngularJS中的数据绑定</h3>
-		<p>* ng-app属性声明所有被其包含的内容都属于这个AngularJS应用，这也是我们可以在Web应用中嵌套AngularJS应用的原因。只有被具有ng-app属性的DOM元素包含的元素才会受AngularJS影响</p>
-		<p>tip: 视图中的插值会在计算一个或多个变量时被动态替换，替换结果是字符串中的插值被变量的值替代。例如，该例中的name变量，它的只是“Ari”，那么视图中的"Hello '{{' name '}}'"字符串会被替换成“Hello Ari”</p>
+		<p class="tip">* ng-app属性声明所有被其包含的内容都属于这个AngularJS应用，这也是我们可以在Web应用中嵌套AngularJS应用的原因。只有被具有ng-app属性的DOM元素包含的元素才会受AngularJS影响</p>
+		<p class="tip">* 视图中的插值会在计算一个或多个变量时被动态替换，替换结果是字符串中的插值被变量的值替代。例如，该例中的name变量，它的只是“Ari”，那么视图中的"Hello '{{' name '}}'"字符串会被替换成“Hello Ari”</p>
+		<p>自动数据绑定使我们可以将视图理解为模型状态的映射。当客户端的数据模型发生变化时，视图就能反映出这些变化，并且不需要写任何自定义的代码。</p>
+		<p>在MVC的世界里，控制器可以不必担心牵扯到渲染视图的工作。</p>
 	</div>
 
 	<script type="text/javascript" src="../src/js/angular.min.js"></script>
