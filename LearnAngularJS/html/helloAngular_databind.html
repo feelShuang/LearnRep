@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app>
+<html>
 <head>
 	<title>Simple app</title>
 	<style type="text/css">
@@ -15,7 +15,7 @@
 	</style>
 </head>
 <body>
-	<div class="demo">	
+	<div class="demo" ng-app>	
 		<input type="text" ng-model="name" placeholder="Your name">
 		<h1>Hello {{ name }}</h1>
 	</div>
@@ -26,6 +26,8 @@
 		<p>自动数据绑定使我们可以将视图理解为模型状态的映射。当客户端的数据模型发生变化时，视图就能反映出这些变化，并且不需要写任何自定义的代码。</p>
 		<p>在MVC的世界里，控制器可以不必担心牵扯到渲染视图的工作。</p>
 	</div>
+
+	
 
 	<script type="text/javascript" src="../src/js/angular.min.js"></script>
 </body>
