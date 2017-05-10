@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../css/app.css">
+</head>
+<body>
+	<div class="content">
+		<p>在JS中，将函数代码全部定义在全局命名空间中是绝对不建议的。在写数据绑定时，控制器的代码写到全局命名空间的函数里了。在AngularJS中，它给提供了一个模块的概念，我们把控制器代码封装在模块里边净化全局空间。模块包含主要的应用代码，一个应用可以包含多个模块，每一个模块都包含了定义具体功能的代码</p>
+		<h3>使用模块的好处：</h3>
+		<p class="tip">* 保持全局命名空间的清洁</p>
+		<p class="tip">* 编写测试代码更容易，并能使其保持清洁，以便更容易找到互相隔离的功能</p>
+		<p class="tip">* 易于在不同应用间复用代码</p>
+		<p class="tip">* 使应用能够以任意顺序加载代码的各个部分</p>
+
+		<p>Angular使用angular.moudule()方法来声明模块，这个方法接受两个参数，第一个是模块的名称，第二个是依赖列表，也就是可以被注入到模块中的对象列表</p>
+		<span>angular.moudule('myApp',[]);</span>
+	</div>
+</body>
+</html>
