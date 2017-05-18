@@ -7,14 +7,30 @@
 	<div class="content">
 		<p>AngularJS中的控制器是一个函数，用来向视图的作用域中添加额外的功能。我们用它来给作用与对象设置初始状态，并添加自定义行为。</p>
 		<p>当我们在页面上创建一个新的控制器时，AngularJS会生成并传递一个新的$scope给这个控制器。可以在这个控制器里初始化$scope。由于AngularJS会负责处理控制器的实例化过程，我们只需要编写构造函数即可。但为了不污染全局命名空间。更合适的方式是创建一个模块，然后在模块中创建控制器</p>
-		<p class="tip">
-			<pre>
-				var app = angular.module('app',[]);
-				app.controller('FirstController', function($scope) {
-					$scope.message = 'hello';
-				})
-			</pre>
-		</p>
+		<pre>
+			var app = angular.module('app',[]);
+			app.controller('FirstController', function($scope) {
+				$scope.message = 'hello';
+			})
+		</pre>
+		<p>只需创建控制器作用域中的函数，就能创建可以在视图中使用的自定义操作。AngularJS允许我们在视图中像调用普通数据一样调用$scope上的函数。</p>
+		<p>用内置指令ng-click可以将按钮、连接等其他任何DOM元素同点击事件进行绑定。（例如在某个DOM元素上触发了点击事件，函数就会被调用）</p>
+		<xmp>
+			<div ng-controller="FirstController">
+				<h4>The simplest adding machine ever</h4>
+				<button ng-click="add(1)" class="button">Add</button>
+				<a ng-click="subtract(1)" class="button alert">Subtract</a>
+				<h4>Current count: {{ counter }}</h4>
+			</div>
+		</xmp>
+		<p>按钮和链接都被绑定在了内部$scope的一个操作上，当点击任何一个元素时Angular会调用相应的方法。注意，当设置调用哪个函数时，会同时用括号传递一个参数</p>
+		<pre>
+			app.controller('FirstController', function($scope) {
+				$scope.counter = 0;
+				$scope.add = function(amount){$scope.counter += amount;};
+				$scope.subtract = function(amount) {$scope.counter -= amount;};
+			});
+		</pre>
 	</div>
 </body>
 </html>
