@@ -7,3 +7,6 @@ body {
 .tip {
 	font-family: STKaiti;
 }
+p {
+	text-indent: 2em;
+}
