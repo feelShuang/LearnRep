@@ -2,8 +2,48 @@
 <html>
 <head>
 	<title>filter</title>
+	<link rel="stylesheet" type="text/css" href="../css/app.css">
 </head>
 <body>
+	<div class="content">
+		<p>过滤器用来格式化需要展示给用户的数据。AngularJS有很多实用的内置过滤器，同时也提供了方便的途径可以自己创建过滤器。</p>
+		<ul>
+			<li>
+				<p>在HTML中的模板绑定符号{{ }}内通过|符号来调用过滤器。例如，假设我们希望将字符串转换成大写，可以对字符串中的每个字符都单独进行转换操作，也可以使用过滤器：{{ name | uppercase }}</p>
+			</li>
+			<li>
+				<p>在JS代码中可以通过$filter来调用过滤器。例如：</p>
+				<pre>
+					app.controller('DemoController', ['$scope', '$filter', function($scope, $filter) {
+						$scope.name = $filter('lowercase')('Ari');
+					}])
+				</pre>
+			</li>
+		</ul>
+		<p>以HTML的形式使用过滤器时，如果需要传递参数给过滤器，只要在过滤器名字后面加冒号即可。如果有多个参数，可以在每个参数后面都加入冒号
+		<span>例如：{{ 123.456789 | number:2 }}</span>
+		</p>
 
+		<h3>相关AngularJS自带的过滤器可以查阅</h3>
+
+		<h3>自定义过滤器</h3>
+		<p>创建自定义过滤器需要将它放到自己的模块中。创建一个将字符串首字母大写的过滤器</p>
+		<pre>
+			angular.module('myApp.filter',[])
+			.filter('capitalize', functionn() {
+				<!-- 过滤器本质上是一个会把我们输入的内容当作参数传入进去的函数。 -->
+				return function(input) {
+					// input是我们传入的字符串
+					if (input) {
+						return input[0].toUpperCase() + input.slice(1);
+					}
+				};
+			})
+		</pre>
+		<p>现在转换思路 全部转换成小写，再把首字母转换成大写</p>
+		<p>{{ 'ginger loves dog treats' | lowercase | capitalize  }}</p>
+		<h3>表单验证</h3>
+		<p>要熟悉表单可以回来研究</p>
+	</div>
 </body>
 </html>
