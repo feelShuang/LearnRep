@@ -32,6 +32,22 @@
 			});
 		</pre>
 		<p>控制器可以将与一个独立视图相关的业务逻辑封装在一个独立的容器中。尽可能地精简控制器是很好的做法。控制器并不适合用来执行DOM操作、格式化或数据操作，以及除存储数据模型之外的状态维护操作。它只是视图和$scope之间的桥梁</p>
+		<p>AngularJS允许在$scope上设置包括对象在内的任何类型的数据，并且在视图中还可以展示对象的属性</p>
+		<pre>
+			app.controller('MyController', function($scope) {
+				$scope.person = {
+					name: 'Ari Lerner'
+				};
+			});
+		</pre>
+		<xmp>
+			<div ng-app="myApp">
+				<div ng-controller="MyController">
+					<h1>{{ person }}</h1>
+					<h2>{{ person.name }}</h2>
+				</div>
+			</div>
+		</xmp>
 	</div>
 </body>
 </html>
