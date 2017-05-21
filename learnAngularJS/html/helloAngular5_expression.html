@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>expression</title>
+	<link rel="stylesheet" type="text/css" href="../css/app.css">
+</head>
+<body>
+	<div class="content">
+		<p>表达式的示例。用{{ }}符号讲一个变量绑定到$scope上的写法本质上就是一个表达式：{{ expression }}。当用$watch进行监听时，AngualrJS会对表达式或函数进行运算。</p>
+		<span>表达式的特性：</span>
+		<ul>
+			<li>所有的表达式都在其所属的作用域内部执行，并有访问本地$scope的权限</li>
+			<li>如果表达式发生了TypeError和ReferenceError并不会抛出异常</li>
+			<li>不允许使用任何流程控制功能</li>
+			<li>可以接收过滤器和过滤器链</li>
+		</ul>
+		<h3>表达式解析$parse服务 插值字符串翻阅</h3>
+	</div>
+</body>
+</html>
