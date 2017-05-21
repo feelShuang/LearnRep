@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>controller</title>
+	<link rel="stylesheet" type="text/css" href="../css/app.css">
 </head>
 <body>
 	<div class="content">
@@ -48,6 +49,41 @@
 				</div>
 			</div>
 		</xmp>
+
+		<h3>控制器嵌套（作用域包含作用域）</h3>
+		<p>AngularJS应用的任何一个部分，都有父级作用域存在。对于ng-app所处的层级来讲，它的父级作用域就是$rootScope。</p>
+		<p>有一个例外：在指令内部创建的作用域被称作孤立作用域。除孤立作用域外，所有的作用域都通过原型继承而来，默认情况下，AngularJS在当前作用域中无法找到某个属性时，便会在父级作用域中进行查询。如果找不到，会顺着父级作用域一直向上寻找，直到抵达$rootScope为知。如果在$rootScope中也找不到，程序会继续运行，但视图无法更新。</p>
+		<pre>
+			app.controller('ParentController', function($scope) {
+				$scope.person = {
+					greeted: false
+				};
+			});
+			app.controller('ChildController', function($scope) {
+				$scope.sayHello = function() {
+					$scope.person.name = 'Ari Lerner';
+				};
+			});
+		</pre>
+		<xmp>
+			<div ng-controller="ParentContorller">
+				<div ng-controller="ChildController">
+					<a ng-click="sayHello()">Say Hello</a>
+				</div>
+				{{ person }}
+			</div>
+		</xmp>
+		<p>控制器应该尽可能保持短小精悍,不要在控制器里操作DOM，添加臃肿的逻辑控制</p>
+		<span>简洁控制器示例</span>
+		<pre>
+			angular.module('myApp', [])
+			.controller('MyController', function($scope, UserSrv) {
+				//内容可以被指令控制
+				$scope.onLogin = function(user) {
+					UserSrv.runLogin(user);
+				};
+			});
+		</pre>
 	</div>
 </body>
 </html>
