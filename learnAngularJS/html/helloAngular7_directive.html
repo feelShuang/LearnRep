@@ -50,6 +50,26 @@
 			<li><xmp><div class="my-directive"></div></xmp></li>
 			<li><xmp><!-- directive: my-directive --></xmp></li>
 		</ul>
+		<p>为了让AngularJS能够调用我们的指令，需要修改指令中的restrict设置。这个设置告诉AngularJs在编译HTML时用哪种声明格式来匹配指令定义。格式有四种：元素（E)、属性（A)、类（C)、注释（M)</p>
+		<pre>
+			angular.module('myApp', [])
+			.directive('myDirective', function() {
+				return {
+					restrict: 'EAC',
+					replace: true,
+					template: '<xmp><a href="http://google.com">Click me to go to Google</a></xmp>'
+				};
+			});
+		</pre>
+		<p>无论有多少种方式可以声明指令，我们坚持使用属性的方式，因为它有比较好的跨浏览器兼容性</p>
+		<h4>4.表达式</h4>
+		<p>由于指令可以用属性的形式调用，那给属性赋值会发生什么。</p>
+		<xmp>
+			<h1 ng-init="greeting='HelloWorld'">The greeting is: {{ greeting }}</h1>
+		</xmp>
+		<p>我们将表达式greeting='HelloWorld'赋值给内置指令ng-init。在表达式中，我们将greeting属性的值设置为Hello World，然后计算花括号内的{{ greeting }}这个表达式的值。这两种情况都会在当前作用域中计算一个普通的JavaScript表达式。根据这个表达式放置的位 置不同，当作用域可以是AngularJS在应用启动时调用ng-app实例化的$rootScope，也可以是某个子作用域，比如某个控制器的作用域。</p>
+		<h5>作用域介绍</h5>
+		
 	</div>
 </body>
 </html>
