@@ -2,8 +2,54 @@
 <html>
 <head>
 	<title>directive</title>
+	<link rel="stylesheet" type="text/css" href="../css/app.css">
 </head>
 <body>
+	<div class="content">
+		<h3>指令：自定义HTML元素和属性</h3>
+		<p>基于我们对HTML元素的理解，指令本质上就是AngularJS扩展具有自定义功能的HTML元素的途径。创建一个自定义元素</p>
+		<xmp>
+			<my-better-video my-href="/goofy-video.mp4">Caneventaketext</my-better-video>
+		</xmp>
+		<p>这个自定义元素使用了特殊的开始和闭合标签my-better-video，以及my-href这个自定义属性。为了让这个标签更有用，可以将浏览器默认的video标签重载，用下面这种方法重载</p>
+		<xmp>
+			<video my-href="/goofy-video.mp4">Can still take children nodes</video>
+		</xmp>
+		<p>正如看到的那样，指令可以和其他指令或属性组合在一起使用，这种组合使用的方式叫合成</p>
+		<p class="tip">tip: 内置指令是打包在AngularJS内部的指令。所有内置指令的命名空间都是用ng作为前缀。为了防止命名空间冲突，不要再自定义指令前加ng前缀</p>
 
+		<h3>第一个指令</h3>
+		<p>myDirective指令的定义看起来是这样的：</p>
+		<pre>
+			angular.module('myApp', [])
+			.directive('myDirective', function() {
+				return: {
+					restrict: 'E',
+					template: ''<xmp><a href="http://google.com">Click me to go to Google</a></xmp>''
+				};
+			});
+		</pre>
+		<p>通过AngularJS模块API中的.directive()方法，我们可以通过传入一个字符串和一个函数来注册一个新指令。其中字符串是这个指令的名字，指令名应该是驼峰命名法，函数应该返回一个对象。</p>
+		<p class="tip">在我们的例子中，在HTML里使用my-directive声明指令，因此指令定义必须 以myDirective为名字。</p>
+		<p>上面的指令定义我们在DOM树种是可以看到AngularJS定义的指令标签，我们可以将自定义标签从生成的DOM中完全移除掉（DOM树种看不到<xmp><my-directive></my-directive></xmp>标签），并只留下由模版生成的链接。将replace设置为true就可以实现这个效果</p>
+		<pre>
+			angular.module('myApp',[])
+			.directive('myDirective', function() {
+				return {
+					restrict: 'E',
+					replace: true,
+					template: '<xmp><a href="http://google.com">Click me to go to Google</a></xmp>'
+				}; 
+			}); 
+		</pre>
+		<p>从现在起，我们把创建的这些自定义元素称作指令，因为事实上声明指令并不需要创建一个新的自定义元素。</p>
+		<p>下面都是用来声明前面创建指令的合法格式：</p>
+		<ul>
+			<li><xmp><my-directive></my-directive></xmp></li>
+			<li><xmp><div my-directive></div></xmp></li>
+			<li><xmp><div class="my-directive"></div></xmp></li>
+			<li><xmp><!-- directive: my-directive --></xmp></li>
+		</ul>
+	</div>
 </body>
 </html>
