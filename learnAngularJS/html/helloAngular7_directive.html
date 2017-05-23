@@ -69,7 +69,12 @@
 		</xmp>
 		<p>我们将表达式greeting='HelloWorld'赋值给内置指令ng-init。在表达式中，我们将greeting属性的值设置为Hello World，然后计算花括号内的{{ greeting }}这个表达式的值。这两种情况都会在当前作用域中计算一个普通的JavaScript表达式。根据这个表达式放置的位 置不同，当作用域可以是AngularJS在应用启动时调用ng-app实例化的$rootScope，也可以是某个子作用域，比如某个控制器的作用域。</p>
 		<h5>作用域介绍</h5>
-		
+		<div ng-app="myApp">
+			<p>We can access: {{ rootProperty }}</p>
+			<div ng-controller="ParentController">
+				<p>We can access: {{ rootProperty }} and {{ parentProperty }}</p>
+			</div>
+		</div>
 	</div>
 </body>
 </html>
