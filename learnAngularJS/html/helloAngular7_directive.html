@@ -69,7 +69,7 @@
 		</xmp>
 		<p>我们将表达式greeting='HelloWorld'赋值给内置指令ng-init。在表达式中，我们将greeting属性的值设置为Hello World，然后计算花括号内的{{ greeting }}这个表达式的值。这两种情况都会在当前作用域中计算一个普通的JavaScript表达式。根据这个表达式放置的位 置不同，当作用域可以是AngularJS在应用启动时调用ng-app实例化的$rootScope，也可以是某个子作用域，比如某个控制器的作用域。</p>
 		<h5>作用域介绍</h5>
-		<div ng-app="myApp">
+		<div class="demo" ng-app="myApp">
 			<p>We can access: {{ rootProperty }}</p>
 			<div ng-controller="ParentController">
 				<p>We can access: {{ rootProperty }} and {{ parentProperty }}</p>
@@ -83,9 +83,22 @@
 				</p>
 				<p>{{ fullSentenceFromChild }}</p>
 			</div>
+
+			<div my-directive></div>
 		</div>
+
+		<h3>向指令中传递数据</h3>
+		<p>我们在上面的指令定义中硬编码了URL和链接文本：</p>
+		<pre>template: '<xmp><a href="http://google.com">Click me to go to Google</a>'</xmp></pre>
+		<p>AngularJS并没有限制在指令的模板中硬编码字符串。为了更好地体验应该将上面的模板转换成可以接受两个变量的形式：一本变量是URL，另一个是链接文本；</p>
+		<pre>template: '<xmp><a href="{{ myUrl }}">{{ myLinkText }}</a>'</xmp></pre>
+		<p>在主HTML文档中，可以给指令添加myUrl和myLinkText两个属性，这两个参数会成为指令内部作用域的属性：</p>
+		<xmp>
+			<div my-directive my-url="http://google.com" my-link-text="Click me to go to Google"></div>
+		</xmp>
 	</div>
 
+	<script type="text/javascript" src="../src/js/angular.min.js"></script>
 	<script type="text/javascript" src="../js/controller/helloAngular_directive.js"></script>
 </body>
 </html>

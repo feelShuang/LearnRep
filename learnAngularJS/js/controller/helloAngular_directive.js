@@ -1,4 +1,4 @@
-angular.module('myApp', [])
+var app = angular.module('myApp', [])
 .run(function($rootScope) {
 	// 使用.run访问$rootScope
 	$rootScope.rootProperty = 'root scope';
@@ -8,11 +8,19 @@ angular.module('myApp', [])
 	// 在DOM忽略的$scope中，根据当前控制器进行推断
 	$scope.parentProperty = 'parent scope';
 })
-.controller('ChildController', function(){
-	$scope.rootProperty = 'child scope';
+.controller('ChildController', function($scope){
+	$scope.childProperty = 'child scope';
 	// 同在DOM中一样，我们可以通过当前$scope直接访问原型中的任意属性
 	$scope.fullSentenceFromChild = 'Same $scope: We can access: ' + 
-		$scoep.rootProperty + 'and' + 
+		$scope.rootProperty + 'and' + 
 		$scope.parentProperty + 'and' + 
 		$scope.childProperty
-})
+});
+
+app.directive('myDirective', function() {
+	return {
+		restrict: 'EAC',
+		replace: true,
+		template: '<a href="http://google.com">Click me to go to Google</a>'
+	}
+});

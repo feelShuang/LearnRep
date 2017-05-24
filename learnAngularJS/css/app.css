@@ -1,6 +1,9 @@
 body {
 	padding: 0 100px;
 }
+.demo {
+	background-color: #C8D6E2;
+}
 .content {
 	background-color: #F9F9F9;
 }
