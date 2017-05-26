@@ -97,6 +97,8 @@
 			<div my-directive my-url="http://google.com" my-link-text="Click me to go to Google"></div>
 		</xmp>
 		<p>有好几种途径可以设置指令内部作用域中的属性的值。最简单的方法就是使用有所属控制器提供的已经存在的作用域。</p>
+		<p>尽管简单，共享状态会导致很多其他问题。如果控制器被移除，或者在控制器的作用域中也定义了一个叫myUrl的属性，我们就要被迫要修改代码，这是成本很高且让人沮丧的</p>
+		<p>AngularJS允许通过创建新的子作用域或者隔离作用域来解决这个问题</p>
 	</div>
 
 	<script type="text/javascript" src="../src/js/angular.min.js"></script>
