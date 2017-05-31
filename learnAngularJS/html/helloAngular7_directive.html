@@ -99,6 +99,35 @@
 		<p>有好几种途径可以设置指令内部作用域中的属性的值。最简单的方法就是使用有所属控制器提供的已经存在的作用域。</p>
 		<p>尽管简单，共享状态会导致很多其他问题。如果控制器被移除，或者在控制器的作用域中也定义了一个叫myUrl的属性，我们就要被迫要修改代码，这是成本很高且让人沮丧的</p>
 		<p>AngularJS允许通过创建新的子作用域或者隔离作用域来解决这个问题</p>
+		<p class="tip">同之前在当前作用域中介绍的继承作用域（子作用域）不同，隔离作用域同当前DOM的作用域是完全分隔开的。为了给这个新的对象设置属性，我们需要显示地通过属性传递数据。</p>
+		<h4>创建隔离作用域</h4>
+		<pre>
+			scope: {
+				someProperty: "needs to be set"
+			}
+		</pre>
+		<p>当用上面代码将指令的作用域设置成一个只包含它自己的属性的干净对象时，实际上创造的是隔离作用域。意味着指令有属于自己的$scope对象，这个对象只能在指令的方法中或指令的模板字符串中使用：</p>
+		<pre>
+			template: '<xmp><div></xmp>\
+						we have access to {{ someProperty }}\
+						<xmp></div></xmp>';
+			controller: function($scope) {
+				// 指令可以有它自己的控制器，
+				// 那种情况下我们可以
+				// 错误 ！！！
+				$scope.someProperty === 'needs to be set';
+			}
+		</pre>
+		<p>实际上不能像上面的例子那样，在作用域对象内部直接设置someProperty属性，应该像之前DOM中提到过的那样给函数传递参数， 通过属性来设置值：</p>
+		<xmp>
+			<div my-directive some-property="someProperty with @ binding"></div>
+		</xmp>
+		<p>我们在作用域对象内部把someProperty值设置为@这个绑定策略。这个绑定策略告诉AngularJS将DOM中some-property属性的值复制给新作用域对象中的someProperty属性：</p>
+		<pre>
+			scope: {
+				someProperty: '@'
+			}
+		</pre>
 	</div>
 
 	<script type="text/javascript" src="../src/js/angular.min.js"></script>
