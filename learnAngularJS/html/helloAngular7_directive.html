@@ -128,6 +128,28 @@
 				someProperty: '@'
 			}
 		</pre>
+		<p>默认情况下someProperty在DOM中的映射是some-property属性。如果想指定名称可以再'@'符号后面添加名称 例：someProperty: '@someAttr'</p>
+		<xmp>
+			<div my-directive some-attr="someProperty with @ binding"></div>
+		</xmp>
+		<p>我们用属性将数据从DOM中复制到指令的隔离作用域中</p>
+		<xmp>
+			<div my-directive my-url="http://google.com" my-link-text="Click me to go to Google"></div>
+		</xmp>
+		<pre>
+			angular.module('myApp',[])
+			.directive('myDirective', function() {
+				return {
+					restrict: 'A',
+					replace: true,
+					scope: {
+						myUrl: '@',
+						myLinkText: '@'
+					},
+					template: <xmp>'<a href="{{ myUrl }}">' + '{{ myLinkText }}</a>'</xmp>
+				}
+			})
+		</pre>
 	</div>
 
 	<script type="text/javascript" src="../src/js/angular.min.js"></script>
