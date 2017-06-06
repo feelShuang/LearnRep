@@ -151,7 +151,34 @@
 			})
 		</pre>
 		<p>默认情况下约定DOM属性和JavaScript中对象属性的名字是一样的（除非对象的属性名采用的是驼峰式写法）。</p>
-		<p></p>
+		<h3>双向数据绑定模拟</h3>
+		<xmp>
+			<label>Their URL field:</label>
+			<input type="text" ng-model="theirUrl">
+			<div my-directive some-attr="theirUrl" my-link-text="Click me to go to Google"></div>
+		</xmp>
+		<pre>
+			angular.module('myApp', [])
+			.directive('myDirective', function() {
+				return {
+					restrict: 'A',
+					replace: true,
+					scope: {
+						myUrl: '=someAttr',
+						myLinkText: '@'
+					},
+					template: '\
+					<div>\
+						<label>My Url Field:</label>\
+						<input type="text"\
+							ng-model="myUrl" />\
+						<a href="{{myUrl}}">{{myLinkText}}</a>\
+					</div>'
+				};
+			});
+		</pre>
+		<p>一边在两个文本输入字段中输入内容，一边审查href属性的值</p>
+		<img src="../src/images/directive-databing.png">
 	</div>
 
 	<script type="text/javascript" src="../src/js/angular.min.js"></script>
