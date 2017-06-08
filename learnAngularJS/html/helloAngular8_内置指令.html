@@ -12,6 +12,17 @@
 		<p>根据HTML标准的定义，布尔属性代表一个true或false值。当这个属性出现时，这个属性的值就是true（无论实际定义的值是什么）。如果未出现，这个属性的值就是false。</p>
 		<p>当在AngularJS中使用动态数据绑定时，不能简单地将这个属性值设置为true或false，因为根据标准定义只有当这个属性不出现时，他的值才为false。因此AngularJS提供了一组带有ng-前缀版本的布尔属性，通过运算表达式的值来决定目标元素上是插入还是一出对应的属性。</p>
 		<h4>ng-disabled</h4>
+		<p>使用ng-disabled可以吧disabled属性绑定到以下表单输入字段上：</p>
+		<xmp><input> (text、checkbox、radio、number、url、email、submit);</xmp>
+		<xmp><textarea></xmp>
+		<xmp><select></xmp>
+		<xmp><button></xmp>
+		<p>ng-disabled可以对是否出现属性进行绑定。</p>
+		<xmp>
+			<input type="text" ng-model="someProperty" placeholder="TypetoEnable">
+			<button ng-model="button" ng-disabled="!someProperty">AButton</button>
+		</xmp>
+		
 	</div>
 </body>
 </html>
