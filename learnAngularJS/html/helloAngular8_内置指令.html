@@ -23,6 +23,15 @@
 			<button ng-model="button" ng-disabled="!someProperty">AButton</button>
 		</xmp>
 		
+		<h4>2.ng-readonly</h4>
+		<p>HTML定义只会检查readonly属性是否出现，而不是他的实际值。通过ng-readonly可以将某个返回真或假的表达式同是否出现readonly属性进行绑定；</p>
+		<xmp>
+			Type here to make sibling readonly: 
+			<input type="text" ng-model="someProperty"><br>
+			<input type="text" ng-readonly="someProperty" value="Some text here">
+		</xmp>
+
+		<h4>3. ng-checked</h4>
 	</div>
 </body>
 </html>
