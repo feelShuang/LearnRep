@@ -10,6 +10,18 @@
 		<p>对于指令，可以把它简单的理解成特定DOM元素上运行的函数，指令可以扩展这个元素的功能</p>
 		<p>directive()方法可以接受两个参数；</p>
 		<h5>1. name（字符串）</h5>
+		<p>指令的名字，用来在视图中引用特定的指令</p>
+		<h5>2. factory_function（函数）</h5>
+		<p>这个函数返回一个对象，其中定义了指令的全部行为，$compile服务利用这个方法返回的对象，在DOM调用指令时来构造指令的行为。</p>
+		<pre>
+			angular.application('myApp', [])
+			.directive('myDirective', function() {
+				// 一个指令定义对象
+				return {
+					// 通过设置项来定义指令，在这里进行覆写
+				};
+			});
+		</pre>
 	</div>
 </body>
 </html>
