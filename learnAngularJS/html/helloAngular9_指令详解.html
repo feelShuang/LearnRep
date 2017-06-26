@@ -26,6 +26,11 @@
 
 		<h6>restrict（字符串）</h6>
 		<p>restrict是一个可选的参数。它告诉AngularJS这个指令可以何种形式被声明。默认值为A，即以属性形式来声明</p>
+		<p>可选值如下</p>
+		<p><strong>E（元素）<xmp><my-directive></my-directive></xmp></strong></p>
+		<p><strong>A（属性，默认值）</strong><xmp><div my-directive="expression"></div></xmp></p>
+		<p><strong>C（类名）</strong><xmp><div class="my-directive:expression"></div></xmp></p>
+		<p><strong>M（注释）</strong><xmp><--directive:my-directive expression--></xmp></p>
 	</div>
 </body>
 </html>
