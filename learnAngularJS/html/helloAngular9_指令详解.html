@@ -31,6 +31,10 @@
 		<p><strong>A（属性，默认值）</strong><xmp><div my-directive="expression"></div></xmp></p>
 		<p><strong>C（类名）</strong><xmp><div class="my-directive:expression"></div></xmp></p>
 		<p><strong>M（注释）</strong><xmp><--directive:my-directive expression--></xmp></p>
+
+		<h6>优先级（数值型）</h6>
+		<p>优先级参数可以被设置为一个数值。大多数指令会忽略这个参数，使用默认值0，但也有些场景设置高优先级是非常重要甚至是必须的。如ngRepeat将这个参数设置为1000，这样可以保证在同一元素上，他总是先被调用</p>
+		<p>如果一个元素上具有两个优先级相同的指令，声明在前面的那个会被优先调用。</p>
 	</div>
 </body>
 </html>
