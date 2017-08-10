@@ -8,10 +8,68 @@
 	<div class="content">
 		<p>AngularJS提供了一系列内置指令。其中一些指令重载了原生的HTML元素，比如<xmp><form>和<a></xmp>标签,当在HTML中使用标签时，并不一定能明确看出是否在使用指令。</p>	
 		<p>其他内置指令通常以ng为前缀，很容易识别。因此我们开发自己的指令时不要使用这个前缀</p>
-		<h3>布尔属性</h3>
+		<h3>(1) 布尔属性</h3>
 		<p>根据HTML标准的定义，布尔属性代表一个true或false值。当这个属性出现时，这个属性的值就是true（无论实际定义的值是什么）。如果未出现，这个属性的值就是false。</p>
 		<p>当在AngularJS中使用动态数据绑定时，不能简单地将这个属性值设置为true或false，因为根据标准定义只有当这个属性不出现时，他的值才为false。因此AngularJS提供了一组带有ng-前缀版本的布尔属性，通过运算表达式的值来决定目标元素上是插入还是一出对应的属性。</p>
-		<h4>ng-disabled</h4>
+
+		<h4>1. ng-disabled</h4>
+		<p>使用ng-disabled可以吧disabled属性绑定到以下表单输入字段上：</p>
+		<xmp><input> (text、checkbox、radio、number、url、email、submit);</xmp>
+		<xmp><textarea></xmp>
+		<xmp><select></xmp>
+		<xmp><button></xmp>
+		<p>ng-disabled可以对是否出现属性进行绑定。</p>
+		<xmp>
+			<input type="text" ng-model="someProperty" placeholder="TypetoEnable">
+			<button ng-model="button" ng-disabled="!someProperty">AButton</button>
+		</xmp>
+		
+		<h4>2.ng-readonly</h4>
+		<p>HTML定义只会检查readonly属性是否出现，而不是他的实际值。通过ng-readonly可以将某个返回真或假的表达式同是否出现readonly属性进行绑定；</p>
+		<xmp>
+			Type here to make sibling readonly: 
+			<input type="text" ng-model="someProperty"><br>
+			<input type="text" ng-readonly="someProperty" value="Some text here">
+		</xmp>
+
+		<h4>3. ng-checked</h4>
+		<p>标准的checked属性是一个布尔属性，不需要进行赋值。通过ng-checked将某个表达式同是否出现checked属性进行绑定</p>
+		<p>下面例子中，我们通过ng-init指令将someProperty的值设置为true。将someProperty同ng-checked绑定在一起，AngularJS会输出标准的HTMLchecked属性，这样默认会把复选框够选：</p>
+		<xmp>
+			<label>someProperty = {{ someProperty }}</label>
+			<input type="checkbox" ng-checked="someProperty" ng-init="someProperty = true" ng-model="someProperty">
+		</xmp>
+
+		<h4>4. ng-selected</h4>
+		<p>ng-selected可以对是否出现option标签的selected属性进行绑定：</p>
+		<xmp>
+			<label>Select Two Fish:</label>
+			<input type="checkbox" ng-model="isTwoFish"><br>
+			<select>
+				<option>One Fish</option>
+				<option ng-selected="isTwoFish">Two Fish</option>
+			</select>
+		</xmp>
+
+		<h3>(2) 类布尔属性</h3>
+		<p>ng-href、ng-src等属性不是标准的HTML布尔属性。ng-href和ng-src都能有效帮助重构和避免错误</p>
+
+		<h4>1. ng-href</h4>
+		<p>当使用当前作用于中的属性动态创建URL时，应用ng-src代替href。这里的潜在问题是当用户点击一个由插值动态生成的链接时，如果插值尚未生效，将会跳转到错误的页面（通常是404）</p>
+		<p>这时，如果使用ng-href，AngularJS会等到插值生效后在执行点击链接的行为</p>
+
+		<h4>2. ng-src</h4>
+		<p>AngularJS会告诉浏览器在ng-src对应的表达式生效之前不要加载图像</p>
+
+		<h3>在指令中使用子作用域</h3>
+		<p>下面介绍的指令会以父级作用域为原型生成子作用域。这种继承的机制可以创建一个隔离层，用来将需要协同工作的方法和数据模型对象放置在一起</p>
+		<h4>1. ng-app</h4>
+		<p>任何具有ng-app属性DOM元素将被标记为$rootScope的起始点。$rootScope是作用域链的起点，任何嵌套在ng-app内的指令都会继承它</p>
+		<h4>2. ng-controller</h4>
+		<p>内置指令ng-controller的作用是为嵌套在其中的指令创建一个子作用域，避免将所有操作和模型都定义在$rootScope上。这个指令可以在一个DOM元素上放置控制器</p>
+		<p>子$scope只是一个JavaScript对象，其中含有从父级$scope中通过原型继承得到的方法和属性，包括$rootScope。</p>
+		<p>嵌套在ng-controller中的指令有访问新子$scope的权限，但是要牢记每个指令都应该遵守和作用域相关的规则</p>
+		<p class="tip">JavaScript对象要么是值复制要么是引用复制。字符串、数字和布尔型变量是值复制。数组、对象和函数则是引用复制。</p>
 	</div>
 </body>
 </html>

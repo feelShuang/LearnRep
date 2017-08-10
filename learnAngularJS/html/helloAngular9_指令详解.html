@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>指令详解</title>
+	<link rel="stylesheet" type="text/css" href="../css/app.css">
+</head>
+<body>
+	<div class="content">
+		<h3>1. 指令定义</h3>
+		<p>对于指令，可以把它简单的理解成特定DOM元素上运行的函数，指令可以扩展这个元素的功能</p>
+		<p>directive()方法可以接受两个参数；</p>
+		<h5>1. name（字符串）</h5>
+		<p>指令的名字，用来在视图中引用特定的指令</p>
+		<h5>2. factory_function（函数）</h5>
+		<p>这个函数返回一个对象，其中定义了指令的全部行为，$compile服务利用这个方法返回的对象，在DOM调用指令时来构造指令的行为。</p>
+		<pre>
+			angular.application('myApp', [])
+			.directive('myDirective', function() {
+				// 一个指令定义对象
+				return {
+					// 通过设置项来定义指令，在这里进行覆写
+				};
+			});
+		</pre>
+		<p></p>
+
+		<h6>restrict（字符串）</h6>
+		<p>restrict是一个可选的参数。它告诉AngularJS这个指令可以何种形式被声明。默认值为A，即以属性形式来声明</p>
+		<p>可选值如下</p>
+		<p><strong>E（元素）<xmp><my-directive></my-directive></xmp></strong></p>
+		<p><strong>A（属性，默认值）</strong><xmp><div my-directive="expression"></div></xmp></p>
+		<p><strong>C（类名）</strong><xmp><div class="my-directive:expression"></div></xmp></p>
+		<p><strong>M（注释）</strong><xmp><--directive:my-directive expression--></xmp></p>
+
+		<h6>优先级（数值型）</h6>
+		<p>优先级参数可以被设置为一个数值。大多数指令会忽略这个参数，使用默认值0，但也有些场景设置高优先级是非常重要甚至是必须的。如ngRepeat将这个参数设置为1000，这样可以保证在同一元素上，他总是先被调用</p>
+		<p>如果一个元素上具有两个优先级相同的指令，声明在前面的那个会被优先调用。</p>
+
+		<h6>terminal（布尔型）</h6>
+		<p>这个参数用来告诉AngularJS停止运行当前元素上比本指令优先级低的指令。但同当前指令优先级相同的指令还是会被执行。如果元素上某个指令设置了terminal参数并具有很高的优先级，就不要在用其他优先级的指令对其进行修饰，因为不会调用。但具有相同优先级还是会被调用。</p>
+
+		<h6>template（字符串或函数）</h6>
+		<p>必须被设置为两种形式之一</p>
+		<p>* 一段HTML文本；</p>
+		<p>* 一个可以接受两个参数的函数，参数为tElement和tAttrs,并返回一个代表模板的字符串。t代表template,是相对于instance的</p>
+
+		<h6>templateUrl（字符串或函数）</h6>
+		<p>templateUrl是可选的参数，可以是以下类型：</p>
+		<p>* 一个代表外部HTML文件路径的字符串；</p>
+		<p>* 一个可以接受两个参数的函数，参数为tElement和tAttrs,并返回一个外部HTML文件路径的字符串。</p>
+
+		<h6>replace（布尔型）</h6>
+		<p>replace是一个可选参数，如果设置了这个参数，值必须为true，因为默认值为false。默认值意味着模板会被当作子元素插入到调用此命令的元素内部</p>
+
+		<h6>指令作用域</h6>
+		<p>为了完全理解指令定义对象中剩下的参数，需要先介绍指令作用域是如何工作的。</p>
+
+		<h6>scope参数（布尔型或对象）</h6>
+		<p></p>
+	</div>
+</body>
+</html>
